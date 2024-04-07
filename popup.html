@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html>
+<link rel="stylesheet" href="style.css">
+
+<head class="head">
+    tabBlock
+</head>
+
+<body class="global">
+    <div style="margin-top:5%;">
+        <label>Num of tabs? (Max 7)</label>
+        <br>
+        <input class="input" id="numTabs" type="number" value="3" min="1" max="7">
+        </input>
+    </div>
+    <br>
+    <div>
+        <label>Block until (>5min) </label><label id="val-msg" style="display:none;">(Block at least 5 min)</label>
+        <input id="timeLimit" class="input" type="datetime-local" value="2024-01-01T08:30" required>
+        </input>
+    </div>
+    <br>
+    <div class="flex-element-buttons">
+        <div>
+            <button type="button" id="start-button" class="start-button" disabled>
+                Start
+            </button>
+
+        </div>
+        <div>
+            <button id="readMe-button" class="readMe-button">
+                ReadMe
+            </button>
+        </div>
+    </div>
+    <br>
+
+    <br>
+    <div id="placeholder-container">
+        <textarea id="commitment-declaration" class="commitment-declaration" type="text" min="150">
+</textarea>
+        <div id="placeholder">Add your commitment declaration. Think about what you want to accomplish and why it is
+            important that you stay strong against distractions. To enable the extension, enter word for word your
+            commitment declaration.</div>
+    </div>
+    <br>
+    <div id="readMe-text" style="display: none;">
+        <p>
+        <p>
+            In order to reach your best life, you need to focus.
+        </p>
+        <p>
+            In order to focus, you need to block all distractions.
+        </p>
+            If you're anything like me, right now you have several windows
+            with 20+ tabs open each.
+        <p>
+            That's what tabBlock is made for.
+        </p>
+            Just input the number of tabs you'd want to limit to
+            and the amount of time you'd like it to be in effect.
+            tabBlock will block any new tabs from being created
+            if you exceed the set limit during the period specified.
+        <p>
+            Research says that, at best, our working memory capacity
+            (the amount of things we can pay attention to at a given time),
+            is anywhere between 3-4 and up to 7 objects.
+            So tabBlock has a max of 7 open tabs allowed,
+            but your brain would prefer 3-4 max. Also, try focusing for longer than 5 minutes!
+        </p>
+        <p>
+            Good luck!
+        </p style="text-align: center;">
+        </p>
+    </div>
+    <div style="text-align: center;">
+        <a href="https://www.buymeacoffee.com/sergendestroy" target="_blank" rel="noopener noreferrer">
+            <img src="red-button.png"></img>
+        </a>
+    </div>
+    <script src="popup.js"></script>
+</body>
+
+</html>

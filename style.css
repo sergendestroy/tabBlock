@@ -1,0 +1,106 @@
+:root{
+    --clr-neon: hsl(#67B271, 100%, 54%)
+  }
+  
+  head{
+    text-align: center;
+  }
+
+  label{
+    color:white;
+    text-shadow:-2px 2px 2px darkblue;
+    font-size: 0.865rem;
+    font-weight: bold;
+  }
+  
+.flex-element-buttons{
+  display: flex;
+  justify-content:center;
+  gap:5px;
+  
+}
+
+
+
+.global {
+  background: linear-gradient(180deg, rgba(132,213,255,1) 35%, rgba(231,130,252,1) 100%); 
+  color: white;
+  font-weight: bolder;
+  width: fit-content;
+}
+.commitment-declaration{
+    height: 15rem;
+    width:14rem;
+    max-width: 15rem;
+    text-wrap: wrap;
+    font-size: 1rem;
+    font-family: monospace;
+    overflow: auto;
+    resize:both;
+
+}
+
+.input {
+  border-width: 3px;
+  border: solid;
+  border-color:rgb(255, 255, 255);
+  box-shadow: -2px 2px 2px darkblue;
+  border-radius: 0.55em;
+  font-family: monospace;
+  margin:0.865em;
+  &:focus-within {
+		border-color: darkblue;
+    outline:none;
+	}
+}
+
+.start-button{
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 0.55em;
+  background-color: #A4DDFA;
+  color:white;
+  width: 5rem;
+  font-size: 0.865rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.readMe-button{
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 0.55em;
+  background-color: transparent;
+  color:white;
+  width: 5rem;
+  box-shadow:-2px 2px 2px darkblue;
+  text-shadow: -2px 2px 2px darkblue;
+  font-size: 0.865rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:active{
+  box-shadow:none;
+
+}
+
+#placeholder-container{
+  background-color: transparent;
+    position: relative;
+    padding: 0%;
+    margin: 0%;
+}
+
+#placeholder{
+    position: absolute;
+    top: 4px;
+    left: 3px;
+    color: gray;
+    pointer-events: none;
+    font-size: 1rem;
+    text-wrap: wrap;
+    font-family: monospace;
+}
+
+#commitment-declaration:focus + #placeholder{
+    display:block;
+}
