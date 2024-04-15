@@ -67,14 +67,10 @@ document.addEventListener("DOMContentLoaded",function (){
     })
   
     //helper functions
-
-
     function toISOLocal(adate) {
         var localdt = new Date(adate - adate.getTimezoneOffset()*60000);
         return localdt.toISOString().slice(0, -8); 
     }
-    
-
     
     function enableStartBtn(isRunning, cDeclaration, dateTime, numTabs){
         let validDateTime = new Date()
@@ -107,10 +103,10 @@ document.addEventListener("DOMContentLoaded",function (){
 
     //validating inputs
     commitDeclaration.addEventListener("input", ()=>{
-        
         enableStartBtn(isRunningState, commitDeclaration.value, timeLimit.value, numTabs.value);
-        //placeholder.innerText= isRunningState? commitDeclaration.value:"";
+        placeholder.innerText= isRunningState? placeholder.innerText:"";
     });
+
     numTabs.addEventListener("input", ()=>{enableStartBtn(isRunningState, commitDeclaration.value, timeLimit.value, numTabs.value)});
     timeLimit.addEventListener("input", ()=>{
         //let chem = timeLimit.value> currentDate
@@ -154,12 +150,12 @@ document.addEventListener("DOMContentLoaded",function (){
         if(res.isRunning){
             timeLimit.disabled=true;
             numTabs.disabled=true;
-            placeholder.innerText = res.placeholder
+            placeholder.innerText = res.placeholder;
          
         }else{
             timeLimit.disabled=false;
             numTabs.disabled=false;
-            placeholder.innerText=placeholder.innerText
+            placeholder.innerText= placeholder.innerText || res.placeholder;
         }
     })
 });
