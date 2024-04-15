@@ -9,7 +9,6 @@ function stopBlocking(listener) {
     chrome.tabs.onCreated.removeListener(listener);
 }
 
-
 chrome.runtime.onMessage.addListener(async (message)=>{
     if (message){
         const currentDate = new Date()
@@ -76,7 +75,7 @@ chrome.runtime.onMessage.addListener(async (message)=>{
 );
 
 
-chrome.storage.local.get(["isRunning","numTabs","timeLimit"], (res)=>{
+chrome.storage.local.get(["isRunning","numTabs","timeLimit","placeholder"], (res)=>{
     chrome.storage.local.set({
         isRunning: "isRunning" in res? res.isRunning:false,
         numTabs: "numTabs" in res? res.numTabs: 4,
@@ -85,6 +84,11 @@ chrome.storage.local.get(["isRunning","numTabs","timeLimit"], (res)=>{
     })
     console.log(`res.timeLimit: ${res.timeLimit}`)
     console.log(`isRunning State: ${res.isRunning}`)
+    console.log(`placeholder: ${res.placeholder}`)
 })
 
-chrome.runtime.setUninstallURL("https://www.buymeacoffee.com/sergendestroy")
+if(chrome.runtime.setUninstallURL) {
+    chrome.runtime.setUninstallURL("https://www.buymeacoffee.com/sergendestroy")
+} else {
+    console.log("Uninstall Redirect not ready yet")
+  }

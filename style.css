@@ -31,12 +31,11 @@
 .commitment-declaration{
     height: 15rem;
     width:14rem;
-    max-width: 15rem;
+    resize: none;
     text-wrap: wrap;
     font-size: 1rem;
     font-family: monospace;
     overflow: auto;
-    resize:both;
 
 }
 

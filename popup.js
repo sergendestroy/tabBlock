@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded",function (){
                 startButton.textContent = !res.isRunning? "Stop":"Start"
                 let newIsRunning = !res.isRunning
                
+                //is the timer running? if yes, then the placeholder innertext will be the same as it is, if not, it will be the value of the commitdeclaration
                placeholder.innerText = res.isRunning?placeholder.innerText: commitDeclaration.value
               
                 chrome.storage.local.set({
@@ -66,20 +67,14 @@ document.addEventListener("DOMContentLoaded",function (){
     })
   
     //helper functions
-    function updatePlaceholderSize(){
-        placeholder.style.width = `${commitDeclaration.offsetWidth}px`;
-        placeholder.style.height = `${commitDeclaration.offsetHeight}px`;
-    }
+
 
     function toISOLocal(adate) {
         var localdt = new Date(adate - adate.getTimezoneOffset()*60000);
         return localdt.toISOString().slice(0, -8); 
     }
     
-    
 
-    window.addEventListener('resize', updatePlaceholderSize);
-    updatePlaceholderSize();
     
     function enableStartBtn(isRunning, cDeclaration, dateTime, numTabs){
         let validDateTime = new Date()
@@ -95,7 +90,6 @@ document.addEventListener("DOMContentLoaded",function (){
             startButton.style.textShadow = '-2px 2px 2px darkblue'
             startButton.style.backgroundColor='transparent'
             
-
         }else if(isRunning && isPlaceholderValid){
             startButton.disabled=false
             startButton.style.boxShadow ='-2px 2px 2px darkblue'
@@ -112,7 +106,11 @@ document.addEventListener("DOMContentLoaded",function (){
     }
 
     //validating inputs
-    commitDeclaration.addEventListener("input", ()=>{enableStartBtn(isRunningState, commitDeclaration.value, timeLimit.value, numTabs.value)});
+    commitDeclaration.addEventListener("input", ()=>{
+        
+        enableStartBtn(isRunningState, commitDeclaration.value, timeLimit.value, numTabs.value);
+        //placeholder.innerText= isRunningState? commitDeclaration.value:"";
+    });
     numTabs.addEventListener("input", ()=>{enableStartBtn(isRunningState, commitDeclaration.value, timeLimit.value, numTabs.value)});
     timeLimit.addEventListener("input", ()=>{
         //let chem = timeLimit.value> currentDate
@@ -149,48 +147,25 @@ document.addEventListener("DOMContentLoaded",function (){
         timeLimit.min = toISOLocal(currentDate);
 
         startButton.textContent= res.isRunning? "Stop":"Start";
-        placeholder.innerText = res.placeholder? res.placeholder:placeholder.innerText;
+
+        //on popup open: if it is running, then the placeholder will be whatever the res.placeholder value is. If it is not running, the value will be the default text
+        //placeholder.innerText = res.placeholder? res.placeholder:placeholder.innerText;
 
         if(res.isRunning){
             timeLimit.disabled=true;
             numTabs.disabled=true;
+            placeholder.innerText = res.placeholder
          
         }else{
             timeLimit.disabled=false;
             numTabs.disabled=false;
+            placeholder.innerText=placeholder.innerText
         }
     })
 });
 
 /*
-
-when I click the stop button, it might go back to allowing new tabs, regardless of status, due to the send.message payload, add a validation first before sending              
-
-  */
-
-  /*
-  you are embarking on a journey.
-  and that journey is called Your Best Life.
-  
-  In order to reach your best life, you need to focus
-  In order to focus, you need to block all distractions
-
-  If you're anything like me, you have several windows
-  with 20+ tabs open each
-  
-  Enter tabBlock.
-
-  Just input the number of tabs you'd want to limit to 
-  and the amount of time you'd like this limit to be in effect
-  tabBlock will block any new tab from being created
-  if you exceed the set limit for the specified amount of time
-
-  research says that, at best our working memory capacity 
-  (the amount of things we can pay focused attention to at a given time),
-  is anywhere between 3-4 and up to 7 objects.
-  
-  So tabBlock has a max of 7 allowed open tabs, 
-  but your brain would prefer you to limit to 3-4 max.
-
-
+TODO: 
+    (Done)Make textarea fixed width
+    Make placeholder vanish
   */
